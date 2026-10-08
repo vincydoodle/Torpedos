@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dxh7aku1kl5hd"]
+
+[ext_resource type="Script" uid="uid://dnytxaibdqrq5" path="res://Scripts/heaven.gd" id="1_fmu87"]
+[ext_resource type="AudioStream" uid="uid://it2d3o76i435" path="res://Sounds/death.ogg" id="1_g7s43"]
+[ext_resource type="Shader" uid="uid://f4xxqbo1tapv" path="res://NiftyView.gdshader" id="2_3ebpa"]
+[ext_resource type="Texture2D" uid="uid://cs4pf131veswf" path="res://Sprites/walls.png" id="2_hcvrv"]
+[ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="4_b6l3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ebpa"]
+shader = ExtResource("2_3ebpa")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxki6"]
+font = ExtResource("4_b6l3t")
+font_size = 149
+
+[sub_resource type="LabelSettings" id="LabelSettings_b6l3t"]
+font = ExtResource("4_b6l3t")
+font_size = 86
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ebpa"]
+font = ExtResource("4_b6l3t")
+font_size = 70
+
+[node name="Is this the end?" type="Node2D" unique_id=21862714]
+script = ExtResource("1_fmu87")
+
+[node name="ShaderBox" type="CanvasLayer" parent="." unique_id=1264985648]
+
+[node name="Shader" type="ColorRect" parent="ShaderBox" unique_id=565291154]
+material = SubResource("ShaderMaterial_3ebpa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ICanSeeHellInTheDistance" type="ColorRect" parent="." unique_id=1656999729]
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="HolyGlowyStuff" type="Sprite2D" parent="." unique_id=1417304742]
+scale = Vector2(2.109386, 2.1093457)
+texture = ExtResource("2_hcvrv")
+
+[node name="TheThirdEye" type="Camera2D" parent="." unique_id=1168555238]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=1989007927]
+stream = ExtResource("1_g7s43")
+
+[node name="IKnewThat" type="Label" parent="." unique_id=286735345]
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+text = "You were hit"
+label_settings = SubResource("LabelSettings_sxki6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IDidNotKnewThat" type="Label" parent="." unique_id=1950253707]
+offset_left = -540.0
+offset_top = -324.0
+offset_right = 540.0
+offset_bottom = 540.0
+text = "Score: <>"
+label_settings = SubResource("LabelSettings_b6l3t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IDidNotBrewThat" type="Label" parent="." unique_id=2040563363]
+offset_left = -540.0
+offset_top = -140.0
+offset_right = 540.0
+offset_bottom = 540.0
+text = "High Score: <>"
+label_settings = SubResource("LabelSettings_b6l3t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close Game" type="ColorRect" parent="." unique_id=1410068702]
+visible = false
+offset_left = -506.0
+offset_top = -61.0
+offset_right = 506.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="Close Game" unique_id=1391033215]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -479.0
+offset_right = 1046.0
+offset_bottom = 601.0
+text = "Keep Holding to Quit Game..."
+label_settings = SubResource("LabelSettings_3ebpa")
+horizontal_alignment = 1
+vertical_alignment = 1

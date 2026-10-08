@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://cvv8xr7r4unp5"]
+
+[ext_resource type="PackedScene" uid="uid://bwpdjgnq1bbki" path="res://Scenes/player.tscn" id="1_owisp"]
+[ext_resource type="Script" uid="uid://b8xj611817bfl" path="res://Scripts/dodge.gd" id="1_vsncy"]
+[ext_resource type="Shader" uid="uid://f4xxqbo1tapv" path="res://NiftyView.gdshader" id="2_64fba"]
+[ext_resource type="Script" uid="uid://bt0p0yk0147qa" path="res://Scripts/torpedo_spawner.gd" id="2_vsncy"]
+[ext_resource type="Texture2D" uid="uid://cs4pf131veswf" path="res://Sprites/walls.png" id="3_64fba"]
+[ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="5_ntt01"]
+[ext_resource type="AudioStream" uid="uid://d4hmq7iyh874d" path="res://Sounds/wehaveawinner.ogg" id="6_vsncy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64fba"]
+shader = ExtResource("2_64fba")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 1.5000000475
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.02000000095
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxki6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8gbba"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjvhh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vsncy"]
+font = ExtResource("5_ntt01")
+font_size = 78
+
+[sub_resource type="LabelSettings" id="LabelSettings_kry3j"]
+font = ExtResource("5_ntt01")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_64fba"]
+font = ExtResource("5_ntt01")
+font_size = 137
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntt01"]
+font = ExtResource("5_ntt01")
+font_size = 69
+font_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4sre6"]
+font = ExtResource("5_ntt01")
+font_size = 140
+
+[node name="Dodge" type="Node2D" unique_id=823345231]
+process_mode = 1
+script = ExtResource("1_vsncy")
+
+[node name="ShaderBox" type="CanvasLayer" parent="." unique_id=628916483]
+
+[node name="Shader" type="ColorRect" parent="ShaderBox" unique_id=1734944074]
+material = SubResource("ShaderMaterial_64fba")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=2031848766]
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="PlayerVeiw" type="Camera2D" parent="." unique_id=1143914921]
+position = Vector2(-3.8146973e-06, -2.131628e-13)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Players" type="Node" parent="." unique_id=315829093]
+
+[node name="Player" parent="Players" unique_id=873129527 instance=ExtResource("1_owisp")]
+position = Vector2(-100, 0)
+
+[node name="Torpedos" type="Node" parent="." unique_id=2018112654]
+process_mode = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=200307966]
+_spawnable_scenes = PackedStringArray("uid://dkt78w833msex")
+spawn_path = NodePath("../Players")
+spawn_limit = 2
+
+[node name="TorpedoSpawner" type="Node" parent="." unique_id=134978329]
+process_mode = 1
+script = ExtResource("2_vsncy")
+
+[node name="TorpedoplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=183140192]
+_spawnable_scenes = PackedStringArray("uid://kunvim6c63xk")
+spawn_path = NodePath("../Torpedos")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=601599456]
+z_index = 10
+
+[node name="West Wall" type="CollisionShape2D" parent="Walls" unique_id=985361154]
+position = Vector2(-540, 0)
+shape = SubResource("WorldBoundaryShape2D_sxki6")
+
+[node name="East Wall" type="CollisionShape2D" parent="Walls" unique_id=1650736063]
+position = Vector2(540, 0)
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="North Wall" type="CollisionShape2D" parent="Walls" unique_id=1790427109]
+position = Vector2(0, -540)
+shape = SubResource("WorldBoundaryShape2D_8gbba")
+
+[node name="South Wall" type="CollisionShape2D" parent="Walls" unique_id=1643335796]
+position = Vector2(0, 540)
+shape = SubResource("WorldBoundaryShape2D_jjvhh")
+
+[node name="GlowyStuff" type="Sprite2D" parent="Walls" unique_id=1063523262]
+scale = Vector2(2.109386, 2.1093457)
+texture = ExtResource("3_64fba")
+
+[node name="WaitForPlayer" type="ColorRect" parent="." unique_id=633676641]
+visible = false
+z_index = 10
+offset_left = -506.0
+offset_top = -54.0
+offset_right = 506.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="WaitForPlayer" unique_id=24192233]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -486.0
+offset_right = 1046.0
+offset_bottom = 594.0
+text = "Please wait for player 2"
+label_settings = SubResource("LabelSettings_vsncy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close Game" type="ColorRect" parent="." unique_id=902391131]
+process_mode = 3
+visible = false
+z_index = 12
+offset_left = -506.0
+offset_top = -54.0
+offset_right = 506.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="Close Game" unique_id=766105499]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -486.0
+offset_right = 1046.0
+offset_bottom = 594.0
+text = "Keep Holding to Quit Game..."
+label_settings = SubResource("LabelSettings_kry3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Win" type="ColorRect" parent="." unique_id=1974314958]
+visible = false
+z_index = 10
+offset_left = -506.0
+offset_top = -98.0
+offset_right = 506.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 0.7176471)
+
+[node name="Text" type="Label" parent="Win" unique_id=1039665650]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -442.0
+offset_right = 1046.0
+offset_bottom = 638.0
+text = "Player# Won!"
+label_settings = SubResource("LabelSettings_64fba")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="Label" parent="Win" unique_id=1155551594]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -334.0
+offset_right = 1046.0
+offset_bottom = 746.0
+text = "Press [ok] to play again"
+label_settings = SubResource("LabelSettings_ntt01")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disconnect" type="ColorRect" parent="." unique_id=1119278505]
+visible = false
+z_index = 10
+offset_left = -506.0
+offset_top = -98.0
+offset_right = 506.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 0.7176471)
+
+[node name="Text" type="Label" parent="Disconnect" unique_id=131995973]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -442.0
+offset_right = 1046.0
+offset_bottom = 638.0
+text = "Disconneced"
+label_settings = SubResource("LabelSettings_4sre6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeHaveAWinner" type="AudioStreamPlayer2D" parent="." unique_id=1825538039]
+stream = ExtResource("6_vsncy")
+
+[connection signal="spawned" from="MultiplayerSpawner" to="MultiplayerSpawner" method="_on_spawned"]

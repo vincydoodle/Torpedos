@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bwpdjgnq1bbki"]
+
+[ext_resource type="Script" uid="uid://cifeqdbk14e71" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://dforhrd1nerff" path="res://Sprites/player.png" id="2_vgqql"]
+[ext_resource type="AudioStream" uid="uid://b3qfkg318b6fv" path="res://Sounds/bounce.ogg" id="3_fkybt"]
+[ext_resource type="AudioStream" uid="uid://blal8a8h7ufok" path="res://Sounds/rumble.ogg" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://cxotiyu6644mv" path="res://Sprites/gradient.png" id="5_fkybt"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6t5aa"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uy76"]
+size = Vector2(353.55347, 353.55347)
+
+[node name="Player" type="CharacterBody2D" unique_id=873129527]
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_6t5aa")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=620692472]
+replication_config = SubResource("SceneReplicationConfig_6t5aa")
+
+[node name="Ears" type="AudioListener2D" parent="." unique_id=2100012594]
+visible = false
+rotation = -1.5707964
+scale = Vector2(9.999999, 9.999999)
+
+[node name="Grad" type="Sprite2D" parent="Ears" unique_id=1535244828]
+position = Vector2(-44.000004, -47.000004)
+rotation = 1.5707964
+scale = Vector2(10, 10)
+texture = ExtResource("5_fkybt")
+
+[node name="Looks" type="Sprite2D" parent="." unique_id=1027742523]
+rotation = -1.5707964
+texture = ExtResource("2_vgqql")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2080358942]
+position = Vector2(-3.2368767e-05, 9.536739e-06)
+rotation = 0.7853982
+scale = Vector2(0.9999995, 0.9999995)
+shape = SubResource("RectangleShape2D_8uy76")
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="." unique_id=309387886]
+rotation = -1.5707964
+scale = Vector2(9.999999, 9.999999)
+stream = ExtResource("3_fkybt")
+max_distance = 1000.0
+attenuation = 1.75
+max_polyphony = 6
+panning_strength = 0.5
+
+[node name="Rumble" type="AudioStreamPlayer" parent="." unique_id=320756173]
+stream = ExtResource("4_vgqql")
+autoplay = true
+
+[connection signal="finished" from="Rumble" to="." method="_on_rumble_finished"]

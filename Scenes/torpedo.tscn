@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://kunvim6c63xk"]
+
+[ext_resource type="Texture2D" uid="uid://cxgojsk4pqnl7" path="res://Sprites/torpedo.png" id="1_2v102"]
+[ext_resource type="Script" uid="uid://m7dd26ki2og2" path="res://Scripts/torpedo.gd" id="1_3k0l0"]
+[ext_resource type="AudioStream" uid="uid://dm6bsyedh08jb" path="res://Sounds/search.ogg" id="3_yg6el"]
+[ext_resource type="AudioStream" uid="uid://cbelpp70btxf2" path="res://Sounds/lock.ogg" id="4_fn3qk"]
+[ext_resource type="AudioStream" uid="uid://j58vxk8liyiy" path="res://Sounds/spawn.ogg" id="4_r1qmv"]
+[ext_resource type="AudioStream" uid="uid://b8sa8p4jodrct" path="res://Sounds/fire.ogg" id="6_o6tg1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o6tg1"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:i_see_you")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:locking")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:its_time")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:fire")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:lines_color_change_time")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("View/LeftSearchLine:position")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("View/RightSearchLine:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("View/ViewCollider:polygon")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath(".:search_loop")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath(".:locked_object")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath(".:turn_direction")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath(".:fired")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath(".:position")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+
+[node name="Torpedo" type="CharacterBody2D" unique_id=390664886 groups=["Torpedo"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3k0l0")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=936347277]
+replication_config = SubResource("SceneReplicationConfig_o6tg1")
+
+[node name="Looks" type="Sprite2D" parent="." unique_id=2110379615]
+rotation = -1.5707964
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_2v102")
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=1465541952 groups=["Torpedo"]]
+rotation = -1.5707964
+scale = Vector2(0.1, 0.1)
+polygon = PackedVector2Array(0, -129.99998, 119.999985, 129.99998, -119.999985, 129.99998)
+
+[node name="View" type="Area2D" parent="." unique_id=1426318396 groups=["Torpedo"]]
+rotation = -1.570797
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="LeftSearchLine" type="Line2D" parent="View" unique_id=63488821]
+points = PackedVector2Array(0, -13, -400, -2080)
+width = 1.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="RightSearchLine" type="Line2D" parent="View" unique_id=1960796771]
+points = PackedVector2Array(0, -13, 400, -2080)
+width = 1.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="ViewCollider" type="CollisionPolygon2D" parent="View" unique_id=475887630 groups=["Torpedo"]]
+polygon = PackedVector2Array(0, -13, 400.00122, -2079.9998, -399.99878, -2080.0002)
+
+[node name="Sounds" type="Node" parent="." unique_id=900933184]
+
+[node name="Search" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1165017013]
+stream = ExtResource("3_yg6el")
+volume_db = -12.235
+attenuation = 1.75
+max_polyphony = 6
+panning_strength = 2.0
+
+[node name="Lock" type="AudioStreamPlayer2D" parent="Sounds" unique_id=776918024]
+stream = ExtResource("4_fn3qk")
+volume_db = -10.196
+attenuation = 1.75
+max_polyphony = 6
+panning_strength = 2.0
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="Sounds" unique_id=2027035335]
+stream = ExtResource("4_r1qmv")
+autoplay = true
+attenuation = 1.75
+max_polyphony = 6
+panning_strength = 2.0
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="Sounds" unique_id=242405743]
+stream = ExtResource("6_o6tg1")
+attenuation = 2.0
+max_polyphony = 10
+panning_strength = 2.0

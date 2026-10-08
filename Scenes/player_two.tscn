@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dkt78w833msex"]
+
+[ext_resource type="Script" uid="uid://cifeqdbk14e71" path="res://Scripts/player.gd" id="1_ytrmp"]
+[ext_resource type="Texture2D" uid="uid://cxotiyu6644mv" path="res://Sprites/gradient.png" id="2_efiyu"]
+[ext_resource type="Texture2D" uid="uid://crr5kldy5mtnx" path="res://Sprites/playertwo.png" id="2_ytrmp"]
+[ext_resource type="AudioStream" uid="uid://b3qfkg318b6fv" path="res://Sounds/bounce.ogg" id="3_x78of"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ytrmp"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uy76"]
+size = Vector2(353.55347, 353.55347)
+
+[node name="PlayerTwo" type="CharacterBody2D" unique_id=873129527]
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_ytrmp")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1341173344]
+replication_config = SubResource("SceneReplicationConfig_ytrmp")
+
+[node name="Ears" type="AudioListener2D" parent="." unique_id=2100012594]
+visible = false
+rotation = -1.5707964
+scale = Vector2(9.999999, 9.999999)
+
+[node name="Grad" type="Sprite2D" parent="Ears" unique_id=1792595556]
+position = Vector2(-42.000004, -42.000004)
+rotation = 1.5707964
+scale = Vector2(10, 10)
+texture = ExtResource("2_efiyu")
+
+[node name="Looks" type="Sprite2D" parent="." unique_id=1027742523]
+rotation = -1.5707964
+texture = ExtResource("2_ytrmp")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2080358942]
+position = Vector2(-3.2368767e-05, 9.536739e-06)
+rotation = 0.7853982
+scale = Vector2(0.9999995, 0.9999995)
+shape = SubResource("RectangleShape2D_8uy76")
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="." unique_id=309387886]
+scale = Vector2(0.99999994, 0.99999994)
+stream = ExtResource("3_x78of")

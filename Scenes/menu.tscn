@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://bufi3p2gk03ca"]
+
+[ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="1_1rerr"]
+[ext_resource type="Shader" uid="uid://f4xxqbo1tapv" path="res://NiftyView.gdshader" id="1_wwsa2"]
+[ext_resource type="Script" uid="uid://7kukanvtgw3t" path="res://Scripts/buttons.gd" id="1_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://dforhrd1nerff" path="res://Sprites/player.png" id="2_jsrd8"]
+[ext_resource type="AudioStream" uid="uid://dugpyq1s6kvxn" path="res://Sounds/press.ogg" id="3_cayip"]
+[ext_resource type="AudioStream" uid="uid://rj1tw6nrca76" path="res://Sounds/focus.ogg" id="4_158mb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwsa2"]
+shader = ExtResource("1_wwsa2")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 1.5000000475
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.02000000095
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxki6"]
+font = ExtResource("1_1rerr")
+font_size = 40
+font_color = Color(0.5729883, 0.5729883, 0.5729883, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7ri8"]
+font = ExtResource("1_1rerr")
+font_size = 38
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_158mb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rerr"]
+font = ExtResource("1_1rerr")
+font_size = 70
+
+[node name="Menu" type="Node2D" unique_id=1560680707]
+
+[node name="ShaderBox" type="CanvasLayer" parent="." unique_id=1128047853]
+
+[node name="Shader" type="ColorRect" parent="ShaderBox" unique_id=1781849638]
+material = SubResource("ShaderMaterial_wwsa2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1922778142]
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoolLookingThing" type="Sprite2D" parent="." unique_id=306145145]
+modulate = Color(0.19434929, 0.19434926, 0.19434926, 1)
+rotation = -0.7592182
+scale = Vector2(1.52, 1.52)
+texture = ExtResource("2_jsrd8")
+
+[node name="PlayerVeiw" type="Camera2D" parent="." unique_id=222530141]
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=579539915]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -72.0
+offset_right = 156.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 84
+alignment = 1
+script = ExtResource("1_xhh6f")
+
+[node name="Play" type="Button" parent="Buttons" unique_id=1588112368]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 135
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
+text = "Play"
+flat = true
+
+[node name="Host" type="Button" parent="Buttons" unique_id=242586075]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 135
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
+text = "Host"
+flat = true
+
+[node name="Join" type="Button" parent="Buttons" unique_id=2050491603]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 135
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
+text = "Join"
+flat = true
+
+[node name="ResetScore" type="Button" parent="Buttons" unique_id=1692379768]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 79
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
+text = "Reset High Score"
+flat = true
+
+[node name="Success" type="Label" parent="Buttons/ResetScore" unique_id=273394967]
+visible = false
+layout_mode = 0
+offset_left = 256.5
+offset_top = 77.0
+offset_right = 442.5
+offset_bottom = 125.0
+text = "Success"
+label_settings = SubResource("LabelSettings_sxki6")
+horizontal_alignment = 1
+
+[node name="JoinMenu" type="ColorRect" parent="." unique_id=467977263]
+visible = false
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="Box" type="VBoxContainer" parent="JoinMenu" unique_id=1234325503]
+layout_mode = 0
+offset_right = 1081.0
+offset_bottom = 1080.0
+alignment = 1
+
+[node name="Instructions" type="Label" parent="JoinMenu/Box" unique_id=1738036046]
+layout_mode = 2
+text = "Enter the IP address of the person you want to join"
+label_settings = SubResource("LabelSettings_m7ri8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IPInput" type="LineEdit" parent="JoinMenu/Box" unique_id=50751718]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 29
+theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "localhost"
+placeholder_text = "Input IPV4 Address Here"
+alignment = 1
+max_length = 15
+context_menu_enabled = false
+emoji_menu_enabled = false
+backspace_deletes_composite_character_enabled = true
+flat = true
+virtual_keyboard_type = 2
+caret_blink = true
+
+[node name="Submit" type="Button" parent="JoinMenu/Box" unique_id=1705198747]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
+text = "Submit & Join"
+flat = true
+
+[node name="Close Game" type="ColorRect" parent="." unique_id=72170225]
+visible = false
+z_index = 10
+offset_left = -506.0
+offset_top = -54.0
+offset_right = 506.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="Close Game" unique_id=531364835]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -486.0
+offset_right = 1046.0
+offset_bottom = 594.0
+text = "Keep Holding to Quit Game..."
+label_settings = SubResource("LabelSettings_1rerr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sounds" type="Node" parent="." unique_id=1036010906]
+
+[node name="Press" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1551649756]
+stream = ExtResource("3_cayip")
+volume_db = 7.137
+
+[node name="Focus" type="AudioStreamPlayer2D" parent="Sounds" unique_id=759123670]
+stream = ExtResource("4_158mb")
+
+[connection signal="pressed" from="Buttons/Play" to="Buttons" method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Host" to="Buttons" method="_on_host_pressed"]
+[connection signal="pressed" from="Buttons/Join" to="Buttons" method="_on_join_pressed"]
+[connection signal="pressed" from="Buttons/ResetScore" to="Buttons" method="_on_reset_score_pressed"]
+[connection signal="pressed" from="JoinMenu/Box/Submit" to="Buttons" method="_on_submit_pressed"]
