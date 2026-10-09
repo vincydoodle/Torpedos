@@ -27,9 +27,10 @@ script = ExtResource("1_ytrmp")
 replication_config = SubResource("SceneReplicationConfig_ytrmp")
 
 [node name="Ears" type="AudioListener2D" parent="." unique_id=2100012594]
-visible = false
+z_index = 4
 rotation = -1.5707964
 scale = Vector2(9.999999, 9.999999)
+current = true
 
 [node name="Grad" type="Sprite2D" parent="Ears" unique_id=1792595556]
 position = Vector2(-42.000004, -42.000004)
@@ -42,6 +43,7 @@ rotation = -1.5707964
 texture = ExtResource("2_ytrmp")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2080358942]
+z_index = 2
 position = Vector2(-3.2368767e-05, 9.536739e-06)
 rotation = 0.7853982
 scale = Vector2(0.9999995, 0.9999995)
