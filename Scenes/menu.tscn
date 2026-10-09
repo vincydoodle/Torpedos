@@ -1,28 +1,11 @@
 [gd_scene format=3 uid="uid://bufi3p2gk03ca"]
 
 [ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="1_1rerr"]
-[ext_resource type="Shader" uid="uid://f4xxqbo1tapv" path="res://NiftyView.gdshader" id="1_wwsa2"]
+[ext_resource type="Material" uid="uid://b14r5qehq5d73" path="res://NiftyGlasses.res" id="1_jsrd8"]
 [ext_resource type="Script" uid="uid://7kukanvtgw3t" path="res://Scripts/buttons.gd" id="1_xhh6f"]
 [ext_resource type="Texture2D" uid="uid://dforhrd1nerff" path="res://Sprites/player.png" id="2_jsrd8"]
 [ext_resource type="AudioStream" uid="uid://dugpyq1s6kvxn" path="res://Sounds/press.ogg" id="3_cayip"]
 [ext_resource type="AudioStream" uid="uid://rj1tw6nrca76" path="res://Sounds/focus.ogg" id="4_158mb"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwsa2"]
-shader = ExtResource("1_wwsa2")
-shader_parameter/exposure = 1.0
-shader_parameter/contrast = 1.05
-shader_parameter/saturation = 0.9
-shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 1.5000000475
-shader_parameter/enable_posterize = true
-shader_parameter/color_levels = 16.0
-shader_parameter/dither_strength = 1.0
-shader_parameter/chrom_aberration = 0.02000000095
-shader_parameter/vignette_strength = 1.0
-shader_parameter/grain_strength = 0.2
-shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
-shader_parameter/tint_strength = 0.15
-shader_parameter/viewport_size_override = Vector2(0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
 
@@ -46,7 +29,7 @@ font_size = 70
 [node name="ShaderBox" type="CanvasLayer" parent="." unique_id=1128047853]
 
 [node name="Shader" type="ColorRect" parent="ShaderBox" unique_id=1781849638]
-material = SubResource("ShaderMaterial_wwsa2")
+material = ExtResource("1_jsrd8")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -175,7 +158,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1rerr")
 theme_override_font_sizes/font_size = 29
 theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
-text = "localhost"
 placeholder_text = "Input IPV4 Address Here"
 alignment = 1
 max_length = 15

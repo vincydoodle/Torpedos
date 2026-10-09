@@ -2,28 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bwpdjgnq1bbki" path="res://Scenes/player.tscn" id="1_owisp"]
 [ext_resource type="Script" uid="uid://b8xj611817bfl" path="res://Scripts/dodge.gd" id="1_vsncy"]
-[ext_resource type="Shader" uid="uid://f4xxqbo1tapv" path="res://NiftyView.gdshader" id="2_64fba"]
+[ext_resource type="Material" uid="uid://b14r5qehq5d73" path="res://NiftyGlasses.res" id="2_64fba"]
 [ext_resource type="Script" uid="uid://bt0p0yk0147qa" path="res://Scripts/torpedo_spawner.gd" id="2_vsncy"]
 [ext_resource type="Texture2D" uid="uid://cs4pf131veswf" path="res://Sprites/walls.png" id="3_64fba"]
 [ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="5_ntt01"]
 [ext_resource type="AudioStream" uid="uid://d4hmq7iyh874d" path="res://Sounds/wehaveawinner.ogg" id="6_vsncy"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_64fba"]
-shader = ExtResource("2_64fba")
-shader_parameter/exposure = 1.0
-shader_parameter/contrast = 1.05
-shader_parameter/saturation = 0.9
-shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 1.5000000475
-shader_parameter/enable_posterize = true
-shader_parameter/color_levels = 16.0
-shader_parameter/dither_strength = 1.0
-shader_parameter/chrom_aberration = 0.02000000095
-shader_parameter/vignette_strength = 1.0
-shader_parameter/grain_strength = 0.2
-shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
-shader_parameter/tint_strength = 0.15
-shader_parameter/viewport_size_override = Vector2(0, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxki6"]
 normal = Vector2(1, 0)
@@ -69,7 +52,7 @@ script = ExtResource("1_vsncy")
 [node name="ShaderBox" type="CanvasLayer" parent="." unique_id=628916483]
 
 [node name="Shader" type="ColorRect" parent="ShaderBox" unique_id=1734944074]
-material = SubResource("ShaderMaterial_64fba")
+material = ExtResource("2_64fba")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -188,6 +171,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Win" type="ColorRect" parent="." unique_id=1974314958]
+visible = false
 z_index = 10
 offset_left = -506.0
 offset_top = -98.0
