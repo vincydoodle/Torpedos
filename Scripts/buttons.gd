@@ -30,13 +30,13 @@ func _process(delta: float) -> void:
 		if current_menu == 1:
 			if selected_button == 1:
 				$Play.grab_focus()
-			
 			elif selected_button == 2:
 				$Host.grab_focus()
 			elif selected_button == 3:
 				$Join.grab_focus()
 			elif selected_button == 4:
 				$ResetScore.grab_focus()
+			
 		elif current_menu == 2:
 			if selected_button == 1:
 				$"../HostMenu/Box/dodge".grab_focus()

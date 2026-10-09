@@ -9,6 +9,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_a04md"]
+font = ExtResource("1_1rerr")
+font_size = 46
+font_color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_sxki6"]
 font = ExtResource("1_1rerr")
 font_size = 40
@@ -106,6 +111,12 @@ theme_override_font_sizes/font_size = 135
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
 text = "Join"
 flat = true
+
+[node name="Disclaimer" type="Label" parent="Buttons" unique_id=1698874341]
+visible = false
+layout_mode = 2
+text = "Multiplayer is only supported in the app"
+label_settings = SubResource("LabelSettings_a04md")
 
 [node name="ResetScore" type="Button" parent="Buttons" unique_id=1692379768]
 visible = false
