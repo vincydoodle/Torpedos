@@ -31,14 +31,6 @@ func _connect(id: int) -> void:
 func _share_scene(scene: String) -> void:
 	get_tree().change_scene_to_file(scene)
 
-@rpc("any_peer", "call_remote")
-func rpc_reconnect(ip: String) -> void:
-	if Game.peer:
-		Game.peer.close()
-		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-		Game.peer = ENetMultiplayerPeer.new()
-	Game.join(ip)
-
 var score: int = 0
 var score_text: String = "Score: <>"
 var high_score: int = 0

@@ -11,18 +11,21 @@ var rotate_velocity: float = 0.0
 var forward_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	if multiplayer.is_server() and (name == "Player" or name.to_int() <= 1):
-		$Ears.show()
-		$Ears.make_current()
-	if !multiplayer.is_server() and (name == "PlayerTwo" or name != "1"):
-		$Ears.show()
-		$Ears.make_current()
+	if Game.peer.get_connection_status() != ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
+		var target = name.to_int()
+		if target == 0:
+			target = 1
+		set_multiplayer_authority(target)
+		
+	if !is_multiplayer_authority():
+		$Ears.visible = false
+		$Ears.clear_current()
+
 
 func _physics_process(delta: float) -> void:
-	if Game.peer.get_connection_status() != ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
-		set_multiplayer_authority(name.to_int())
-	if !is_multiplayer_authority() and Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_CONNECTED:
-		return
+	if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_CONNECTED:
+		if !is_multiplayer_authority():
+			return
 	
 	# Rotation Physics
 	if Input.get_axis("Turn Left", "Turn Right") != 0:

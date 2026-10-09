@@ -17,7 +17,7 @@ shader_parameter/enable_pixelate = true
 shader_parameter/pixel_factor = 1.5000000475
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 16.0
-shader_parameter/dither_strength = 0.35
+shader_parameter/dither_strength = 1.0
 shader_parameter/chrom_aberration = 0.02000000095
 shader_parameter/vignette_strength = 1.0
 shader_parameter/grain_strength = 0.2
@@ -40,6 +40,11 @@ normal = Vector2(0, 1)
 font = ExtResource("5_ntt01")
 font_size = 78
 
+[sub_resource type="LabelSettings" id="LabelSettings_xs0tj"]
+font = ExtResource("5_ntt01")
+font_size = 69
+font_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_kry3j"]
 font = ExtResource("5_ntt01")
 font_size = 70
@@ -50,7 +55,7 @@ font_size = 137
 
 [sub_resource type="LabelSettings" id="LabelSettings_ntt01"]
 font = ExtResource("5_ntt01")
-font_size = 69
+font_size = 54
 font_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4sre6"]
@@ -86,6 +91,7 @@ scale = Vector2(0.99999994, 0.99999994)
 [node name="Players" type="Node" parent="." unique_id=315829093]
 
 [node name="Player" parent="Players" unique_id=873129527 instance=ExtResource("1_owisp")]
+z_index = 4
 position = Vector2(-100, 0)
 
 [node name="Torpedos" type="Node" parent="." unique_id=2018112654]
@@ -105,7 +111,6 @@ _spawnable_scenes = PackedStringArray("uid://kunvim6c63xk")
 spawn_path = NodePath("../Torpedos")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=601599456]
-z_index = 10
 
 [node name="West Wall" type="CollisionShape2D" parent="Walls" unique_id=985361154]
 position = Vector2(-540, 0)
@@ -147,8 +152,22 @@ label_settings = SubResource("LabelSettings_vsncy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Text2" type="Label" parent="WaitForPlayer" unique_id=378070958]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -334.0
+offset_right = 1046.0
+offset_bottom = 746.0
+text = "Your ip is 000.000.0.0"
+label_settings = SubResource("LabelSettings_xs0tj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Close Game" type="ColorRect" parent="." unique_id=902391131]
 process_mode = 3
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 visible = false
 z_index = 12
 offset_left = -506.0
@@ -169,7 +188,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Win" type="ColorRect" parent="." unique_id=1974314958]
-visible = false
 z_index = 10
 offset_left = -506.0
 offset_top = -98.0
@@ -194,7 +212,7 @@ offset_left = -34.0
 offset_top = -334.0
 offset_right = 1046.0
 offset_bottom = 746.0
-text = "Press [ok] to play again"
+text = "Player 2 press [ok] to play again"
 label_settings = SubResource("LabelSettings_ntt01")
 horizontal_alignment = 1
 vertical_alignment = 1
