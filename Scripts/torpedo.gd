@@ -17,6 +17,8 @@ func _ready() -> void:
 	$Sounds/Spawn.play()
 	$Sounds/Search.play()
 
+var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
+
 func _physics_process(delta: float) -> void:
 	if fire and !fired:
 		if multiplayer.is_server():
@@ -28,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	if multiplayer.is_server(): 
 		if its_time:
 			velocity -= Vector2.RIGHT.rotated(rotation) * 50
+			
 			var hit_data: KinematicCollision2D = move_and_collide(velocity * delta)
 			if hit_data:
 				if hit_data.get_collider() is CharacterBody2D and !hit_data.get_collider().is_in_group("Torpedo"):
@@ -120,3 +123,7 @@ func change_view(amount: float) -> Vector2:
 	$View/ViewCollider.polygon = new_polygon
 	
 	return left_point
+
+func newParticle() -> MeshInstance2D:
+	var sirparticletheparticle: MeshInstance2D = particleMesh.instantiate()
+	return sirparticletheparticle

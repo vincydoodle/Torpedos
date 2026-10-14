@@ -2,9 +2,8 @@ extends Node2D
 
 func _ready() -> void:
 	$"Walls".z_index = 5
-	$"Close Game".z_index = 100
-	$Players/Player.z_index = 3
-	$Score.z_index = 100
+	$"Close Game".z_index = 2000
+	$Score.z_index = 2000
 
 func _process(delta: float) -> void:
 	if Game.closing > 0:

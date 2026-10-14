@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dforhrd1nerff" path="res://Sprites/player.png" id="2_jsrd8"]
 [ext_resource type="AudioStream" uid="uid://dugpyq1s6kvxn" path="res://Sounds/press.ogg" id="3_cayip"]
 [ext_resource type="AudioStream" uid="uid://rj1tw6nrca76" path="res://Sounds/focus.ogg" id="4_158mb"]
+[ext_resource type="Texture2D" uid="uid://cxotiyu6644mv" path="res://Sprites/gradient.png" id="5_wbdvm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cayip"]
 
@@ -75,7 +76,7 @@ script = ExtResource("1_xhh6f")
 
 [node name="Play" type="Button" parent="Buttons" unique_id=1588112368]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_color = Color(0.21710122, 0.21710122, 0.21710122, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -88,7 +89,7 @@ flat = true
 
 [node name="Host" type="Button" parent="Buttons" unique_id=242586075]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_color = Color(0.21710122, 0.21710122, 0.21710122, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -101,7 +102,7 @@ flat = true
 
 [node name="Join" type="Button" parent="Buttons" unique_id=2050491603]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4627451, 0.4627451, 0.4627451, 1)
+theme_override_colors/font_color = Color(0.21710122, 0.21710122, 0.21710122, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -191,6 +192,10 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cayip")
 text = "Submit & Join"
 flat = true
+
+[node name="ShadyStuff" type="Sprite2D" parent="." unique_id=954413361]
+scale = Vector2(6.02, 6.02)
+texture = ExtResource("5_wbdvm")
 
 [node name="Close Game" type="ColorRect" parent="." unique_id=72170225]
 visible = false

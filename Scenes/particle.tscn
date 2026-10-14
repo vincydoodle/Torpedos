@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b1t5bqm1k1sb5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rflw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oo68y"]
+material = SubResource("StandardMaterial3D_7rflw")
+radius = 1.0
+
+[node name="Particle" type="Node2D" unique_id=800721452]
+
+[node name="Circle" type="MeshInstance2D" parent="." unique_id=1272981113]
+mesh = SubResource("CapsuleMesh_oo68y")

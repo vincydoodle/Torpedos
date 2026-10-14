@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://it2d3o76i435" path="res://Sounds/death.ogg" id="1_g7s43"]
 [ext_resource type="Material" uid="uid://b14r5qehq5d73" path="res://NiftyGlasses.res" id="2_b6l3t"]
 [ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="4_b6l3t"]
+[ext_resource type="Texture2D" uid="uid://cxotiyu6644mv" path="res://Sprites/gradient.png" id="5_3ebpa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sxki6"]
 font = ExtResource("4_b6l3t")
@@ -72,6 +73,18 @@ text = "High Score: <>"
 label_settings = SubResource("LabelSettings_b6l3t")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Foreground" type="ColorRect" parent="." unique_id=654585619]
+z_index = 1000
+offset_left = -2559.0
+offset_top = -2571.0
+offset_right = 2508.0
+offset_bottom = 2729.0
+color = Color(0, 0, 0, 0.1882353)
+
+[node name="HeavenlyShadows" type="Sprite2D" parent="." unique_id=1966580854]
+scale = Vector2(5.81, 5.81)
+texture = ExtResource("5_3ebpa")
 
 [node name="Close Game" type="ColorRect" parent="." unique_id=1410068702]
 visible = false

@@ -20,11 +20,16 @@ func _ready() -> void:
 		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 		Game.peer = ENetMultiplayerPeer.new()
 
+var spinAmount = 0.0
 func _process(delta: float) -> void:
 	if Game.closing > 0:
 		$"../Close Game".show()
 	else:
 		$"../Close Game".hide()
+	
+	spinAmount += 0.000001
+		
+	$"../CoolLookingThing".rotation_degrees += spinAmount
 	
 	if InputEvent:
 		if current_menu == 1:

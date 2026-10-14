@@ -112,8 +112,17 @@ position = Vector2(0, 540)
 shape = SubResource("WorldBoundaryShape2D_jjvhh")
 
 [node name="GlowyStuff" type="Sprite2D" parent="Walls" unique_id=1063523262]
+modulate = Color(0.47843137, 0.47843137, 0.47843137, 1)
 scale = Vector2(2.109386, 2.1093457)
 texture = ExtResource("3_64fba")
+
+[node name="Foreground" type="ColorRect" parent="." unique_id=96425551]
+z_index = 1000
+offset_left = -2559.0
+offset_top = -2571.0
+offset_right = 2508.0
+offset_bottom = 2729.0
+color = Color(0, 0, 0, 0.1882353)
 
 [node name="WaitForPlayer" type="ColorRect" parent="." unique_id=633676641]
 visible = false

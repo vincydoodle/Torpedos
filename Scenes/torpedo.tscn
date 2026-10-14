@@ -56,6 +56,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_3k0l0")
 
+[node name="TrailParticleBox" type="Node2D" parent="." unique_id=502535696]
+z_index = -1
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=936347277]
 replication_config = SubResource("SceneReplicationConfig_o6tg1")
 

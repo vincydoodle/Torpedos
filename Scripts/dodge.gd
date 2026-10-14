@@ -70,7 +70,10 @@ func get_local_ip() -> String:
 				if parts.size() >  1:
 					var second_octet = parts[1].to_int()
 					if second_octet >= 16 and second_octet <= 31:
-						return address
+						if address == "127.0.0.1":
+							return "unavailable"
+						else:
+							return address
 					
 	return "127.0.0.1" 
 
