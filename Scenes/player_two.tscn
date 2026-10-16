@@ -23,6 +23,8 @@ collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_ytrmp")
 
+[node name="TrailParticleBox" type="Node" parent="." unique_id=878165989]
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1341173344]
 replication_config = SubResource("SceneReplicationConfig_ytrmp")
 

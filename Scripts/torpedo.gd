@@ -17,8 +17,6 @@ func _ready() -> void:
 	$Sounds/Spawn.play()
 	$Sounds/Search.play()
 
-var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
-
 func _physics_process(delta: float) -> void:
 	if fire and !fired:
 		if multiplayer.is_server():
@@ -27,10 +25,9 @@ func _physics_process(delta: float) -> void:
 		$Sounds/Fire.play()
 		$View/LeftSearchLine.default_color = Color(0.0, 0.0, 0.0, 1.0)
 		$View/RightSearchLine.default_color = Color(0.0, 0.0, 0.0, 1.0)
-	if multiplayer.is_server(): 
-		if its_time:
+	if its_time:
+		if multiplayer.is_server(): 
 			velocity -= Vector2.RIGHT.rotated(rotation) * 50
-			
 			var hit_data: KinematicCollision2D = move_and_collide(velocity * delta)
 			if hit_data:
 				if hit_data.get_collider() is CharacterBody2D and !hit_data.get_collider().is_in_group("Torpedo"):
@@ -38,12 +35,17 @@ func _physics_process(delta: float) -> void:
 						get_tree().current_scene.death(hit_data.get_collider().name)
 					else:
 						get_tree().current_scene.death()
-			if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
-				possible_scores.append(remap(global_position.distance_to(locked_object.global_position), 0.0, 1527.35, 21.0, 1.0))
-		if global_position.x < -540.0 or global_position.x > 540.0 or global_position.y < -540.0 or global_position.y > 540.0:
-			if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
-				Game.score += possible_scores.max() * remap($"../../TorpedoSpawner".spawn_time, 1000, 5000, 4, 1)
-			queue_free()
+					return
+		var newParticle = NewParticle()
+		get_node("TrailParticleBox").add_child(newParticle)
+		if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED and multiplayer.is_server():
+			possible_scores.append(remap(global_position.distance_to(locked_object.global_position), 0.0, 1527.35, 21.0, 1.0))
+	if (global_position.x < -5400.0 or global_position.x > 5400.0 or global_position.y < -5400.0 or global_position.y > 5400.0) and multiplayer.is_server():
+		if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
+			Game.score += possible_scores.max() * remap($"../../TorpedoSpawner".spawn_time, 1000, 5000, 4, 1)
+		queue_free()
+		return
+
 		
 	if !its_time:
 		if i_see_you and !locking:
@@ -124,6 +126,12 @@ func change_view(amount: float) -> Vector2:
 	
 	return left_point
 
-func newParticle() -> MeshInstance2D:
-	var sirparticletheparticle: MeshInstance2D = particleMesh.instantiate()
+var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
+
+func NewParticle() -> Node2D:
+	var sirparticletheparticle: Node2D = particleMesh.instantiate()
+	sirparticletheparticle.modulate = Color(0.502, 0.0, 0.0, 1.0)
+	sirparticletheparticle.global_position = global_position
+	sirparticletheparticle.rotation_degrees = rotation_degrees + 180
+	sirparticletheparticle.z_index = -100
 	return sirparticletheparticle

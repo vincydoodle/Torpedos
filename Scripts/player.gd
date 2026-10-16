@@ -9,6 +9,7 @@ const bouncyness: float = 0.6
 var move_velocity: Vector2 = Vector2.ZERO
 var rotate_velocity: float = 0.0
 var forward_direction: Vector2 = Vector2.ZERO
+var trailParticleColor: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 func _ready() -> void:
 	if Game.peer.get_connection_status() != ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
@@ -20,6 +21,11 @@ func _ready() -> void:
 	if !is_multiplayer_authority():
 		$Ears.visible = false
 		$Ears.clear_current()
+	
+	if name == "Player" or name == "1":
+		trailParticleColor = Color(0.0, 0.58, 1.0, 1.0)
+	else:
+		trailParticleColor = Color(1.0, 0.42, 0.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -54,7 +60,19 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	$Ears.rotation = -rotation
-
+	get_node("TrailParticleBox").add_child(NewParticle())
 
 func _on_rumble_finished() -> void:
 	$Rumble.play()
+
+var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
+
+func NewParticle() -> Node2D:
+	var sirparticletheparticle: Node2D = particleMesh.instantiate()
+	sirparticletheparticle.modulate = trailParticleColor
+	sirparticletheparticle.scale = Vector2(0.5, 0.5)
+	sirparticletheparticle.global_position = global_position
+	sirparticletheparticle.rotation_degrees = rotation_degrees + 180
+	sirparticletheparticle.z_index = -100
+	sirparticletheparticle.fadeSpeed = 0.04
+	return sirparticletheparticle

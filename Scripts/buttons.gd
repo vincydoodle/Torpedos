@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	else:
 		$"../Close Game".hide()
 	
-	spinAmount += 0.000001
+	spinAmount += 0.00001
 		
 	$"../CoolLookingThing".rotation_degrees += spinAmount
 	

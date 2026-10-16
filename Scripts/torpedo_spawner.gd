@@ -15,7 +15,7 @@ func reset_clock() -> void:
 func _physics_process(delta: float) -> void:
 	if !multiplayer.is_server(): 
 		return
-
+		
 	if spawn_timer() > spawn_time:
 		spawn(randi())
 		

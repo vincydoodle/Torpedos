@@ -170,6 +170,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1rerr")
 theme_override_font_sizes/font_size = 29
 theme_override_styles/focus = SubResource("StyleBoxEmpty_158mb")
+text = "localhost"
 placeholder_text = "Input IPV4 Address Here"
 alignment = 1
 max_length = 15

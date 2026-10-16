@@ -43,6 +43,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="ColorRect" parent="." unique_id=2031848766]
+z_index = -4096
 offset_left = -540.0
 offset_top = -540.0
 offset_right = 540.0
