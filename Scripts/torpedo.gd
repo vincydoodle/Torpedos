@@ -6,6 +6,7 @@ var locking: bool = false
 var its_time: bool = false
 var fire: bool = false
 var fired: bool = false
+var do_i_be_fancy: int = 0
 
 var lines_color_change_time: int = 0
 var turn_direction: int = [-1, 1].pick_random()
@@ -13,9 +14,35 @@ var turn_direction: int = [-1, 1].pick_random()
 var possible_scores: Array = []
 var locked_object: CharacterBody2D
 
+var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
+
 func _ready() -> void:
+	if randi_range(0, 100) < 80:
+		do_i_be_fancy = 1
+	elif randi_range(0, 100) < 25:
+		do_i_be_fancy = 4
+		scale = Vector2(3.0, 3.0)
+		for sound: AudioStreamPlayer2D in $Sounds.get_children():
+			sound.pitch_scale -= 0.25
+			sound.volume_db += 7
+	else:
+		do_i_be_fancy = 2
+		scale = Vector2(1.5, 1.5)
+		for sound: AudioStreamPlayer2D in $Sounds.get_children():
+			sound.pitch_scale -= 0.05
+			sound.volume_db += 3
+	
 	$Sounds/Spawn.play()
 	$Sounds/Search.play()
+	var heisthereparticle: Node2D = particleMesh.instantiate()
+	heisthereparticle.modulate = Color(0.294, 0.0, 0.0, 1.0)
+	heisthereparticle.scale = Vector2(5 + do_i_be_fancy, 5 + do_i_be_fancy)
+	heisthereparticle.position = position
+	heisthereparticle.z_index = 1
+	get_node("TrailParticleBox").add_child(heisthereparticle)
+	
+	for torpedo in get_tree().get_nodes_in_group("Torpedo"):
+		add_collision_exception_with(torpedo)
 
 func _physics_process(delta: float) -> void:
 	if fire and !fired:
@@ -39,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		var newParticle = NewParticle()
 		get_node("TrailParticleBox").add_child(newParticle)
 		if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED and multiplayer.is_server():
-			possible_scores.append(remap(global_position.distance_to(locked_object.global_position), 0.0, 1527.35, 21.0, 1.0))
+			possible_scores.append((remap(global_position.distance_to(locked_object.global_position), 0.0, 1527.35, 21.0, 1.0)) * do_i_be_fancy)
 	if (global_position.x < -5400.0 or global_position.x > 5400.0 or global_position.y < -5400.0 or global_position.y > 5400.0) and multiplayer.is_server():
 		if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_DISCONNECTED:
 			Game.score += possible_scores.max() * remap($"../../TorpedoSpawner".spawn_time, 1000, 5000, 4, 1)
@@ -91,7 +118,7 @@ func _physics_process(delta: float) -> void:
 					locked_object = $View.get_overlapping_bodies()[0]
 				i_see_you = true
 			$Sounds/Search.stop()
-			$Sounds/Spawn.pitch_scale = 3
+			$Sounds/Spawn.pitch_scale = 3 / do_i_be_fancy
 			$Sounds/Spawn.play()
 			
 		
@@ -126,12 +153,9 @@ func change_view(amount: float) -> Vector2:
 	
 	return left_point
 
-var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
-
 func NewParticle() -> Node2D:
 	var sirparticletheparticle: Node2D = particleMesh.instantiate()
 	sirparticletheparticle.modulate = Color(0.502, 0.0, 0.0, 1.0)
 	sirparticletheparticle.global_position = global_position
-	sirparticletheparticle.rotation_degrees = rotation_degrees + 180
 	sirparticletheparticle.z_index = -100
 	return sirparticletheparticle

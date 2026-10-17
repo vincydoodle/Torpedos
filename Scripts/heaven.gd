@@ -13,6 +13,8 @@ func _process(delta: float) -> void:
 	else:
 		$"Close Game".hide()
 	
+	$Foreground.color = Game.modulator
+	
 	if Input.is_action_just_pressed("Ok"):
 		Game.score = 0
 		get_tree().change_scene_to_file("res://Scenes/main.tscn")

@@ -72,7 +72,6 @@ func NewParticle() -> Node2D:
 	sirparticletheparticle.modulate = trailParticleColor
 	sirparticletheparticle.scale = Vector2(0.5, 0.5)
 	sirparticletheparticle.global_position = global_position
-	sirparticletheparticle.rotation_degrees = rotation_degrees + 180
 	sirparticletheparticle.z_index = -100
 	sirparticletheparticle.fadeSpeed = 0.04
 	return sirparticletheparticle

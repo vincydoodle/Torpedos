@@ -50,6 +50,10 @@ offset_right = 540.0
 offset_bottom = 540.0
 color = Color(0, 0, 0, 1)
 
+[node name="Foreground" type="CanvasModulate" parent="." unique_id=1082974692]
+z_index = 1000
+color = Color(0.7302159, 0.730216, 0.73021597, 1)
+
 [node name="CoolLookingThing" type="Sprite2D" parent="." unique_id=306145145]
 modulate = Color(0.19434929, 0.19434926, 0.19434926, 1)
 rotation = -0.7592182

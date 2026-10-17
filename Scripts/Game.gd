@@ -1,8 +1,10 @@
 extends Node2D
+var CONFIG_EXPORT_WEB: bool = OS.has_feature("web")
 
 var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 var hide_mouse: bool = true
 var hosted_scene: String
+var modulator: Color = Color(0.729, 0.729, 0.729, 1.0)
 
 func host(scene_path: String) -> void:
 	hosted_scene = scene_path
@@ -43,12 +45,17 @@ func _ready() -> void:
 
 var closing: int = 0
 func _process(delta: float) -> void:
+	if !CONFIG_EXPORT_WEB:
+		if Input.is_action_pressed("Quit"):
+			closing += 1
+		else:
+			closing = 0
 	
-	if Input.is_action_pressed("Quit"):
-		closing += 1
-	else:
-		closing = 0
-	
+	if Input.is_action_pressed("Brightness Up"):
+		Game.modulator = Color(Game.modulator.r + 0.01, Game.modulator.g + 0.01, Game.modulator.b + 0.01, Game.modulator.a)
+	if Input.is_action_pressed("Brightness Down"):
+		Game.modulator = Color(Game.modulator.r - 0.01, Game.modulator.g - 0.01, Game.modulator.b - 0.01, Game.modulator.a)
+		
 	if Input.is_action_pressed("Menu"):
 		get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 	

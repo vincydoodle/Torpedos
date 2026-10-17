@@ -50,6 +50,9 @@ properties/12/replication_mode = 1
 properties/13/path = NodePath(".:position")
 properties/13/spawn = true
 properties/13/replication_mode = 1
+properties/14/path = NodePath(".:do_i_be_fancy")
+properties/14/spawn = true
+properties/14/replication_mode = 1
 
 [node name="Torpedo" type="CharacterBody2D" unique_id=390664886 groups=["Torpedo"]]
 collision_layer = 2
@@ -101,7 +104,7 @@ panning_strength = 2.0
 
 [node name="Lock" type="AudioStreamPlayer2D" parent="Sounds" unique_id=776918024]
 stream = ExtResource("4_fn3qk")
-volume_db = -10.196
+volume_db = -15.159
 attenuation = 1.75
 max_polyphony = 6
 panning_strength = 2.0

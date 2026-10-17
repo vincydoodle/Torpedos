@@ -68,6 +68,10 @@ offset_right = 540.0
 offset_bottom = 540.0
 color = Color(0, 0, 0, 1)
 
+[node name="Foreground" type="CanvasModulate" parent="." unique_id=2031814121]
+z_index = 1000
+color = Color(0.7302159, 0.730216, 0.73021597, 1)
+
 [node name="PlayerVeiw" type="Camera2D" parent="." unique_id=1143914921]
 position = Vector2(-3.8146973e-06, -2.131628e-13)
 scale = Vector2(0.99999994, 0.99999994)
@@ -116,14 +120,6 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 modulate = Color(0.47843137, 0.47843137, 0.47843137, 1)
 scale = Vector2(2.109386, 2.1093457)
 texture = ExtResource("3_64fba")
-
-[node name="Foreground" type="ColorRect" parent="." unique_id=96425551]
-z_index = 1000
-offset_left = -2559.0
-offset_top = -2571.0
-offset_right = 2508.0
-offset_bottom = 2729.0
-color = Color(0, 0, 0, 0.1882353)
 
 [node name="WaitForPlayer" type="ColorRect" parent="." unique_id=633676641]
 visible = false

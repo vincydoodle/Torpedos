@@ -20,6 +20,8 @@ func _process(delta: float) -> void:
 	else:
 		$"Close Game".hide()
 	
+	$Foreground.color = Game.modulator
+	
 	if len(multiplayer.get_peers()) < 1:
 		$Disconnect.show()
 		get_tree().paused = true

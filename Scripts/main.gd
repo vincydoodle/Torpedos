@@ -6,10 +6,13 @@ func _ready() -> void:
 	$Score.z_index = 2000
 
 func _process(delta: float) -> void:
+	
 	if Game.closing > 0:
 		$"Close Game".show()
 	else:
 		$"Close Game".hide()
-
+		
+	$Foreground.color = Game.modulator
+	
 func death():
 	get_tree().change_scene_to_file("res://Scenes/heaven.tscn")

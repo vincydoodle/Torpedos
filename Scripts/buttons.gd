@@ -5,15 +5,22 @@ var num_buttons: int = 3
 var current_menu: int = 1
 
 func _ready() -> void:
-	
 	Game.score = 0
-	num_buttons = 3
-	
 	get_tree().paused = false
 	
-	if Game.loads() != 0:
-		$ResetScore.show()
-		num_buttons = 4
+	if Game.CONFIG_EXPORT_WEB:
+		num_buttons = 1
+		$Disclaimer.show()
+		$Host.hide()
+		$Join.hide()
+		if Game.loads() != 0:
+			$ResetScore.show()
+			num_buttons = 2
+	else:
+		num_buttons = 3
+		if Game.loads() != 0:
+			$ResetScore.show()
+			num_buttons = 4
 	
 	if Game.peer:
 		Game.peer.close()
@@ -27,6 +34,9 @@ func _process(delta: float) -> void:
 	else:
 		$"../Close Game".hide()
 	
+	$"../Foreground".color = Game.modulator
+
+	
 	spinAmount += 0.00001
 		
 	$"../CoolLookingThing".rotation_degrees += spinAmount
@@ -36,28 +46,32 @@ func _process(delta: float) -> void:
 			if selected_button == 1:
 				$Play.grab_focus()
 			elif selected_button == 2:
-				$Host.grab_focus()
+				if Game.CONFIG_EXPORT_WEB:
+					$ResetScore.grab_focus()
+				else:
+					$Host.grab_focus()
 			elif selected_button == 3:
 				$Join.grab_focus()
 			elif selected_button == 4:
 				$ResetScore.grab_focus()
 			
-		elif current_menu == 2:
-			if selected_button == 1:
-				$"../HostMenu/Box/dodge".grab_focus()
-				$"../HostMenu/Box/dodge/Tooltip".show()
-				$"../HostMenu/Box/dictatorer/Tooltip".hide()
-				$"../HostMenu/Box/thefpsone/Tooltip".hide()
-			elif selected_button == 2:
-				$"../HostMenu/Box/dictatorer".grab_focus()
-				$"../HostMenu/Box/dictatorer/Tooltip".show()
-				$"../HostMenu/Box/thefpsone/Tooltip".hide()
-				$"../HostMenu/Box/dodge/Tooltip".hide()
-			elif selected_button == 3:
-				$"../HostMenu/Box/thefpsone".grab_focus()
-				$"../HostMenu/Box/thefpsone/Tooltip".show()
-				$"../HostMenu/Box/dictatorer/Tooltip".hide()
-				$"../HostMenu/Box/dodge/Tooltip".hide()
+		#elif current_menu == 2:
+			#if selected_button == 1:
+				#$"../HostMenu/Box/dodge".grab_focus()
+				#$"../HostMenu/Box/dodge/Tooltip".show()
+				#$"../HostMenu/Box/dictatorer/Tooltip".hide()
+				#$"../HostMenu/Box/thefpsone/Tooltip".hide()
+			#elif selected_button == 2:
+				#$"../HostMenu/Box/dictatorer".grab_focus()
+				#$"../HostMenu/Box/dictatorer/Tooltip".show()
+				#$"../HostMenu/Box/thefpsone/Tooltip".hide()
+				#$"../HostMenu/Box/dodge/Tooltip".hide()
+			#elif selected_button == 3:
+				#$"../HostMenu/Box/thefpsone".grab_focus()
+				#$"../HostMenu/Box/thefpsone/Tooltip".show()
+				#$"../HostMenu/Box/dictatorer/Tooltip".hide()
+				#$"../HostMenu/Box/dodge/Tooltip".hide()
+			
 		elif current_menu == 3:
 			if selected_button == 1:
 				$"../JoinMenu/Box/IPInput".grab_focus()
