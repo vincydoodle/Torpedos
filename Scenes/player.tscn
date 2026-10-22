@@ -14,6 +14,8 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="QuadMesh" id="QuadMesh_oo68y"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uy76"]
 size = Vector2(353.55347, 353.55347)
 
@@ -43,6 +45,14 @@ texture = ExtResource("5_fkybt")
 [node name="Looks" type="Sprite2D" parent="." unique_id=1027742523]
 rotation = -1.5707964
 texture = ExtResource("2_vgqql")
+
+[node name="WUTISTHAT" type="MeshInstance2D" parent="." unique_id=1844275882]
+visible = false
+modulate = Color(0, 0.5803922, 1, 1)
+position = Vector2(-0.054183245, -0.013366461)
+rotation = 0.7853982
+scale = Vector2(353.59958, 353.42917)
+mesh = SubResource("QuadMesh_oo68y")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2080358942]
 z_index = 1

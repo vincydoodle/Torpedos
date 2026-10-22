@@ -32,21 +32,33 @@ func _physics_process(delta: float) -> void:
 	if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_CONNECTED:
 		if !is_multiplayer_authority():
 			return
-	
-	# Rotation Physics
-	if Input.get_axis("Turn Left", "Turn Right") != 0:
-		rotate_velocity = move_toward(rotate_velocity, Input.get_axis("Turn Left", "Turn Right") * rotate_speed, 20.0 * delta)
+	if !Input.is_key_pressed(KEY_O):
+		$Looks.show()
+		$Ears/Grad.show()
+		$WUTISTHAT.hide()
+		
+		# Rotation Physics
+		if Input.get_axis("Turn Left", "Turn Right") != 0:
+			rotate_velocity = move_toward(rotate_velocity, Input.get_axis("Turn Left", "Turn Right") * rotate_speed, 20.0 * delta)
+		else:
+			rotate_velocity = move_toward(rotate_velocity, 0.0, rotate_slow_down_speed * delta)
+		
+		# Forward-Backwards Physics
+		if Input.is_action_just_pressed("Forward") or Input.is_action_just_pressed("Backward"):
+			forward_direction = Vector2.RIGHT.rotated(rotation)
+		if Input.get_axis("Forward", "Backward") != 0:
+			move_velocity += forward_direction * Input.get_axis("Forward", "Backward") * move_speed
+		else:
+			move_velocity = move_velocity.move_toward(Vector2.ZERO, slow_down_speed * delta)
 	else:
-		rotate_velocity = move_toward(rotate_velocity, 0.0, rotate_slow_down_speed * delta)
-	
-	# Forward-Backwards Physics
-	if Input.is_action_just_pressed("Forward") or Input.is_action_just_pressed("Backward"):
-		forward_direction = Vector2.RIGHT.rotated(rotation)
-	if Input.get_axis("Forward", "Backward") != 0:
-		move_velocity += forward_direction * Input.get_axis("Forward", "Backward") * move_speed
-	else:
-		move_velocity = move_velocity.move_toward(Vector2.ZERO, slow_down_speed * delta)
-	
+		rotate_velocity = 0
+		rotation_degrees = 90
+		$Looks.hide()
+		$Ears/Grad.hide()
+		$WUTISTHAT.show()
+		var raw_input = Vector2(Input.get_axis("Turn Left", "Turn Right"), Input.get_axis("Forward", "Backward"))
+		move_velocity = raw_input * 500
+		
 	var hit_data: KinematicCollision2D = move_and_collide(move_velocity * delta)
 	rotation += rotate_velocity
 	
@@ -70,7 +82,7 @@ var particleMesh: PackedScene = preload("res://Scenes/particle.tscn")
 func NewParticle() -> Node2D:
 	var sirparticletheparticle: Node2D = particleMesh.instantiate()
 	sirparticletheparticle.modulate = trailParticleColor
-	sirparticletheparticle.scale = Vector2(0.5, 0.5)
+	sirparticletheparticle.scale = Vector2(1, 1)
 	sirparticletheparticle.global_position = global_position
 	sirparticletheparticle.z_index = -100
 	sirparticletheparticle.fadeSpeed = 0.04

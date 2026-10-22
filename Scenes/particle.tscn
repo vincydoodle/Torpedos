@@ -6,8 +6,8 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oo68y"]
 material = SubResource("StandardMaterial3D_7rflw")
-radius = 8.0
-height = 16.0
+radius = 6.0
+height = 12.0
 
 [node name="Particle" type="Node2D" unique_id=800721452]
 script = ExtResource("1_xhwoe")

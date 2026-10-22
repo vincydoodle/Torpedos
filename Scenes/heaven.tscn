@@ -78,8 +78,8 @@ label_settings = SubResource("LabelSettings_b6l3t")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeavenlyShadows" type="Sprite2D" parent="." unique_id=1966580854]
-scale = Vector2(5.81, 5.81)
+[node name="ShadyStuff" type="Sprite2D" parent="." unique_id=1966580854]
+scale = Vector2(5.8, 5.8)
 texture = ExtResource("5_3ebpa")
 
 [node name="Close Game" type="ColorRect" parent="." unique_id=1410068702]

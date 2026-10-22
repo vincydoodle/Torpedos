@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cs4pf131veswf" path="res://Sprites/walls.png" id="3_64fba"]
 [ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="5_ntt01"]
 [ext_resource type="AudioStream" uid="uid://d4hmq7iyh874d" path="res://Sounds/wehaveawinner.ogg" id="6_vsncy"]
+[ext_resource type="AudioStream" uid="uid://c7qgkgu6no8oo" path="res://Sounds/MusicThatITotallyOwnAndIsNotGoingToResultInCopyrightInfringement.ogg" id="8_4sre6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxki6"]
 normal = Vector2(1, 0)
@@ -229,5 +230,10 @@ vertical_alignment = 1
 
 [node name="WeHaveAWinner" type="AudioStreamPlayer2D" parent="." unique_id=1825538039]
 stream = ExtResource("6_vsncy")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=4166954]
+stream = ExtResource("8_4sre6")
+volume_db = 3.586
+autoplay = true
 
 [connection signal="spawned" from="MultiplayerSpawner" to="MultiplayerSpawner" method="_on_spawned"]

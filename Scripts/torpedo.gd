@@ -35,8 +35,9 @@ func _ready() -> void:
 	$Sounds/Spawn.play()
 	$Sounds/Search.play()
 	var heisthereparticle: Node2D = particleMesh.instantiate()
-	heisthereparticle.modulate = Color(0.294, 0.0, 0.0, 1.0)
-	heisthereparticle.scale = Vector2(5 + do_i_be_fancy, 5 + do_i_be_fancy)
+	heisthereparticle.modulate = Color(0.294 + do_i_be_fancy * 0.1, 0.0, 0.0, 1.0)
+	heisthereparticle.scale = Vector2(do_i_be_fancy * 2, do_i_be_fancy * 2)
+	heisthereparticle.expand = true
 	heisthereparticle.position = position
 	heisthereparticle.z_index = 1
 	get_node("TrailParticleBox").add_child(heisthereparticle)

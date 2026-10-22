@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bt0p0yk0147qa" path="res://Scripts/torpedo_spawner.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://d3hi83cpjbqmy" path="res://Scripts/score.gd" id="6_6bp64"]
 [ext_resource type="FontFile" uid="uid://ckxqqwaqw2fkh" path="res://HeavenlyLook.ttf" id="6_21xkr"]
+[ext_resource type="AudioStream" uid="uid://c7qgkgu6no8oo" path="res://Sounds/MusicThatITotallyOwnAndIsNotGoingToResultInCopyrightInfringement.ogg" id="8_344ge"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxki6"]
 normal = Vector2(1, 0)
@@ -134,3 +135,8 @@ text = "Keep Holding to Quit Game..."
 label_settings = SubResource("LabelSettings_kry3j")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=916236840]
+stream = ExtResource("8_344ge")
+volume_db = 3.586
+autoplay = true

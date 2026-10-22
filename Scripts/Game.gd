@@ -51,6 +51,22 @@ func _process(delta: float) -> void:
 		else:
 			closing = 0
 	
+	if get_tree().current_scene != null:
+		if Input.is_key_pressed(KEY_O):
+			if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
+				get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = false
+			if get_tree().current_scene.get_node_or_null("Foreground") != null:
+				get_tree().current_scene.get_node_or_null("Foreground").visible = false
+			if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
+				get_tree().current_scene.get_node_or_null("ShadyStuff").visible = false
+		else:
+			if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
+				get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = true
+			if get_tree().current_scene.get_node_or_null("Foreground") != null:
+				get_tree().current_scene.get_node_or_null("Foreground").visible = true
+			if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
+				get_tree().current_scene.get_node_or_null("ShadyStuff").visible = true
+	
 	if Input.is_action_pressed("Brightness Up"):
 		Game.modulator = Color(Game.modulator.r + 0.01, Game.modulator.g + 0.01, Game.modulator.b + 0.01, Game.modulator.a)
 	if Input.is_action_pressed("Brightness Down"):
