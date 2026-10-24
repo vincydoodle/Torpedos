@@ -1,4 +1,5 @@
-# Torpedos
+![Project Screenshot](art.png)
+
 ### Intentionally misspelled
 
 This is my first real game ever made in Godot.
