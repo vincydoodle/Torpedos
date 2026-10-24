@@ -2,7 +2,7 @@
 ### Intentionally misspelled
 
 This is my first real game ever made in Godot.
-When I say real I mean it isn't something I started then dropped :)
+When I say real I mean it isn't something I started then dropped :) \n
 [Also available on itch!](https://vincydoodle.itch.io/torpedos)
 
 This game is inspired by the arcade game Asteroids.
