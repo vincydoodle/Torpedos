@@ -136,7 +136,8 @@ label_settings = SubResource("LabelSettings_kry3j")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=916236840]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=696795127]
 stream = ExtResource("8_344ge")
-volume_db = 3.586
+volume_db = 5.0
 autoplay = true
+parameters/looping = true

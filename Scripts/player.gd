@@ -32,11 +32,7 @@ func _physics_process(delta: float) -> void:
 	if Game.peer.get_connection_status() == ENetMultiplayerPeer.CONNECTION_CONNECTED:
 		if !is_multiplayer_authority():
 			return
-	if !Input.is_key_pressed(KEY_O):
-		$Looks.show()
-		$Ears/Grad.show()
-		$WUTISTHAT.hide()
-		
+	if !Game.debug:
 		# Rotation Physics
 		if Input.get_axis("Turn Left", "Turn Right") != 0:
 			rotate_velocity = move_toward(rotate_velocity, Input.get_axis("Turn Left", "Turn Right") * rotate_speed, 20.0 * delta)
@@ -56,6 +52,7 @@ func _physics_process(delta: float) -> void:
 		$Looks.hide()
 		$Ears/Grad.hide()
 		$WUTISTHAT.show()
+		$Rumble.stream_paused = true
 		var raw_input = Vector2(Input.get_axis("Turn Left", "Turn Right"), Input.get_axis("Forward", "Backward"))
 		move_velocity = raw_input * 500
 		
@@ -66,8 +63,9 @@ func _physics_process(delta: float) -> void:
 		if hit_data.get_collider().get_collision_mask_value(1) and !hit_data.get_collider().is_in_group("Torpedo"):
 			# Bouncy Guy :)
 			move_velocity = move_velocity.bounce(hit_data.get_normal()) * bouncyness
-			$Bounce.play()
-		elif hit_data.get_collider().get_collision_mask_value(2) and hit_data.get_collider().is_in_group("Torpedo"):
+			if !Game.debug:
+				$Bounce.play()
+		elif hit_data.get_collider().get_collision_mask_value(2) and hit_data.get_collider().is_in_group("Torpedo") and !Game.debug:
 			get_tree().current_scene.death()
 
 func _process(delta: float) -> void:

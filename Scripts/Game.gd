@@ -44,28 +44,30 @@ func _ready() -> void:
 	saves()
 
 var closing: int = 0
+var debug: bool = false
 func _process(delta: float) -> void:
 	if !CONFIG_EXPORT_WEB:
 		if Input.is_action_pressed("Quit"):
 			closing += 1
 		else:
 			closing = 0
-	
-	if get_tree().current_scene != null:
-		if Input.is_key_pressed(KEY_O):
-			if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
-				get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = false
-			if get_tree().current_scene.get_node_or_null("Foreground") != null:
-				get_tree().current_scene.get_node_or_null("Foreground").visible = false
-			if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
-				get_tree().current_scene.get_node_or_null("ShadyStuff").visible = false
+		
+		if debug:
+			score = -256
+		
+		if get_tree().current_scene != null:
+			if debug and get_tree().current_scene.name == "Main":
+				if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
+					get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = false
+				if get_tree().current_scene.get_node_or_null("Foreground") != null:
+					get_tree().current_scene.get_node_or_null("Foreground").visible = false
+				if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
+					get_tree().current_scene.get_node_or_null("ShadyStuff").visible = false
+				if get_tree().current_scene.get_node_or_null("Music") != null:
+					get_tree().current_scene.get_node_or_null("Music").stream_paused = true
 		else:
-			if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
-				get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = true
-			if get_tree().current_scene.get_node_or_null("Foreground") != null:
-				get_tree().current_scene.get_node_or_null("Foreground").visible = true
-			if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
-				get_tree().current_scene.get_node_or_null("ShadyStuff").visible = true
+			debug = false
+			score = 0
 	
 	if Input.is_action_pressed("Brightness Up"):
 		Game.modulator = Color(Game.modulator.r + 0.01, Game.modulator.g + 0.01, Game.modulator.b + 0.01, Game.modulator.a)

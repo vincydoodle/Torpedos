@@ -65,6 +65,7 @@ shape = SubResource("RectangleShape2D_8uy76")
 rotation = -1.5707964
 scale = Vector2(9.999999, 9.999999)
 stream = ExtResource("3_fkybt")
+volume_db = 10.0
 max_distance = 1000.0
 attenuation = 1.75
 max_polyphony = 6

@@ -4,6 +4,9 @@ func _ready() -> void:
 	$"Walls".z_index = 5
 	$"Close Game".z_index = 2000
 	$Score.z_index = 2000
+	
+	if Input.is_key_pressed(KEY_O):
+		Game.debug = true
 
 func _process(delta: float) -> void:
 	

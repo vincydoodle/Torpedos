@@ -233,7 +233,8 @@ stream = ExtResource("6_vsncy")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=4166954]
 stream = ExtResource("8_4sre6")
-volume_db = 3.586
+volume_db = 5.0
 autoplay = true
+parameters/looping = true
 
 [connection signal="spawned" from="MultiplayerSpawner" to="MultiplayerSpawner" method="_on_spawned"]

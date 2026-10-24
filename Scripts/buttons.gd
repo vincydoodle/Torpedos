@@ -78,6 +78,12 @@ func _process(delta: float) -> void:
 			elif selected_button == 2:
 				$"../JoinMenu/Box/Submit".grab_focus()
 	
+	if get_viewport().gui_get_focus_owner() != null:
+		if get_viewport().gui_get_focus_owner().name == "Play" and Input.is_key_pressed(KEY_O):
+			get_viewport().gui_get_focus_owner().modulate = Color(0.0, 0.0, 1.0, 1.0)
+		else:
+			get_viewport().gui_get_focus_owner().modulate = Color(1.0, 1.0, 1.0, 1.0)
+	
 	if Input.is_action_just_pressed("Ok"):
 		var focused = get_viewport().gui_get_focus_owner()
 		$"../Sounds/Press".play()
