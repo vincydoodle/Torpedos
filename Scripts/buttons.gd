@@ -55,23 +55,6 @@ func _process(delta: float) -> void:
 			elif selected_button == 4:
 				$ResetScore.grab_focus()
 			
-		#elif current_menu == 2:
-			#if selected_button == 1:
-				#$"../HostMenu/Box/dodge".grab_focus()
-				#$"../HostMenu/Box/dodge/Tooltip".show()
-				#$"../HostMenu/Box/dictatorer/Tooltip".hide()
-				#$"../HostMenu/Box/thefpsone/Tooltip".hide()
-			#elif selected_button == 2:
-				#$"../HostMenu/Box/dictatorer".grab_focus()
-				#$"../HostMenu/Box/dictatorer/Tooltip".show()
-				#$"../HostMenu/Box/thefpsone/Tooltip".hide()
-				#$"../HostMenu/Box/dodge/Tooltip".hide()
-			#elif selected_button == 3:
-				#$"../HostMenu/Box/thefpsone".grab_focus()
-				#$"../HostMenu/Box/thefpsone/Tooltip".show()
-				#$"../HostMenu/Box/dictatorer/Tooltip".hide()
-				#$"../HostMenu/Box/dodge/Tooltip".hide()
-			
 		elif current_menu == 3:
 			if selected_button == 1:
 				$"../JoinMenu/Box/IPInput".grab_focus()
@@ -79,7 +62,7 @@ func _process(delta: float) -> void:
 				$"../JoinMenu/Box/Submit".grab_focus()
 	
 	if get_viewport().gui_get_focus_owner() != null:
-		if get_viewport().gui_get_focus_owner().name == "Play" and Input.is_key_pressed(KEY_O):
+		if get_viewport().gui_get_focus_owner().name == "Play" and Input.is_key_pressed(KEY_O) and !Game.CONFIG_EXPORT_WEB:
 			get_viewport().gui_get_focus_owner().modulate = Color(0.0, 0.0, 1.0, 1.0)
 		else:
 			get_viewport().gui_get_focus_owner().modulate = Color(1.0, 1.0, 1.0, 1.0)

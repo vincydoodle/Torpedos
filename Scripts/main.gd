@@ -5,7 +5,8 @@ func _ready() -> void:
 	$"Close Game".z_index = 2000
 	$Score.z_index = 2000
 	
-	if Input.is_key_pressed(KEY_O):
+	Game.debug = false
+	if Input.is_key_pressed(KEY_O) and !Game.CONFIG_EXPORT_WEB:
 		Game.debug = true
 
 func _process(delta: float) -> void:

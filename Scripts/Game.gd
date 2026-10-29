@@ -55,19 +55,19 @@ func _process(delta: float) -> void:
 		if debug:
 			score = -256
 		
-		if get_tree().current_scene != null:
-			if debug and get_tree().current_scene.name == "Main":
-				if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
-					get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = false
-				if get_tree().current_scene.get_node_or_null("Foreground") != null:
-					get_tree().current_scene.get_node_or_null("Foreground").visible = false
-				if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
-					get_tree().current_scene.get_node_or_null("ShadyStuff").visible = false
-				if get_tree().current_scene.get_node_or_null("Music") != null:
-					get_tree().current_scene.get_node_or_null("Music").stream_paused = true
-		else:
-			debug = false
-			score = 0
+	if get_tree().current_scene != null:
+		if debug and get_tree().current_scene.name == "Main":
+			if get_tree().current_scene.get_node_or_null("ShaderBox/Shader") != null:
+				get_tree().current_scene.get_node_or_null("ShaderBox/Shader").visible = false
+			if get_tree().current_scene.get_node_or_null("Foreground") != null:
+				get_tree().current_scene.get_node_or_null("Foreground").visible = false
+			if get_tree().current_scene.get_node_or_null("ShadyStuff") != null:
+				get_tree().current_scene.get_node_or_null("ShadyStuff").visible = false
+			if get_tree().current_scene.get_node_or_null("Music") != null:
+				get_tree().current_scene.get_node_or_null("Music").stream_paused = true
+	else:
+		debug = false
+		score = 0
 	
 	if Input.is_action_pressed("Brightness Up"):
 		Game.modulator = Color(Game.modulator.r + 0.01, Game.modulator.g + 0.01, Game.modulator.b + 0.01, Game.modulator.a)

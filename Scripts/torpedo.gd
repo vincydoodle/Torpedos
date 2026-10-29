@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 			velocity -= Vector2.RIGHT.rotated(rotation) * 50
 			var hit_data: KinematicCollision2D = move_and_collide(velocity * delta)
 			if hit_data:
-				if hit_data.get_collider() is CharacterBody2D and !hit_data.get_collider().is_in_group("Torpedo"):
+				if hit_data.get_collider() is CharacterBody2D and !hit_data.get_collider().is_in_group("Torpedo") and !Game.debug:
 					if get_tree().current_scene.name == "Dodge":
 						get_tree().current_scene.death(hit_data.get_collider().name)
 					else:
